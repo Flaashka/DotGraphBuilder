@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+// ReSharper disable InconsistentNaming
 
 namespace FluentApi.Graph
 {
@@ -35,5 +37,12 @@ namespace FluentApi.Graph
             edges.Add(result);
             return result;
         }
+
+        public string Build()
+        {
+            return this.ToDotFormat();
+        }
+        
+        
     }
 }
