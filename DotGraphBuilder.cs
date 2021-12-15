@@ -99,6 +99,11 @@ namespace FluentApi.Graph
 			return parentBuilder.AddEdge(sourceNode, destinationNode);
 		}
 
+		public GraphNodeBuilder AddNode(string nodeName)
+		{
+			return parentBuilder.AddNode(nodeName);
+		}
+		
 		public DotGraphBuilder With(Action<EdgeCommonAttributesConfig> applyAttributes)
 		{
 			applyAttributes(new EdgeCommonAttributesConfig(graphEdge));

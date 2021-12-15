@@ -126,17 +126,17 @@ a -- b [color=black; fontsize=12; label=ab]; a -- x; x -- y [color=red; weight=2
 ""3x"" -> ""a b c"" [label=1.234]
 }", dot);
         }
-//
-//         [Test]
-//         public void WithAcceptsEmptyAction()
-//         {
-//             var dot =
-//                 DotGraphBuilder.UndirectedGraph("G")
-//                     .AddNode("node").With(c => { })
-//                     .AddEdge("a", "b").With(c => { })
-//                     .Build();
-//             AssertAreSame("graph G { node; a -- b }", dot);
-//         }
+
+         [Test]
+         public void WithAcceptsEmptyAction()
+         {
+             var dot =
+                 DotGraphBuilder.UndirectedGraph("G")
+                     .AddNode("node").With(c => { })
+                     .AddEdge("a", "b").With(c => { })
+                     .Build();
+             AssertAreSame("graph G { node; a -- b }", dot);
+         }
 
         private static void AssertAreSame(string expectedDot, string actualDot)
         {
