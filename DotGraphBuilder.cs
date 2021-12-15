@@ -34,6 +34,13 @@ namespace FluentApi.Graph
 
 			return new GraphNodeBuilder(node, this);
 		}
+		
+		public GraphEdgeBuilder AddEdge(string sourceNode, string destinationNode)
+		{
+			var edge = graph?.AddEdge(sourceNode, destinationNode);
+
+			return new GraphEdgeBuilder(edge, this);
+		}
 
 		public string Build() => graph.ToDotFormat();
 	}
@@ -64,6 +71,32 @@ namespace FluentApi.Graph
 		public string Build() => parentBuilder.Build();
 	}
 
+	public class GraphEdgeBuilder
+	{
+		private readonly GraphEdge graphEdge;
+		private readonly DotGraphBuilder parentBuilder;
+		
+		public GraphEdgeBuilder(GraphEdge graphEdge, DotGraphBuilder parent)
+		{
+			this.graphEdge = graphEdge;
+			parentBuilder = parent;
+		}
+		
+		public GraphEdgeBuilder AddEdge(string sourceNode, string destinationNode)
+		{
+			return parentBuilder.AddEdge(sourceNode, destinationNode);
+		}
+
+		public DotGraphBuilder With(Action<EdgeCommonAttributesConfig> applyAttributes)
+		{
+			applyAttributes(new EdgeCommonAttributesConfig(graphEdge));
+			
+			return parentBuilder;
+		}
+		
+		public string Build() => parentBuilder.Build();
+	}
+	
 	public class CommonAttributesConfig<TConfig>
 		where TConfig : CommonAttributesConfig<TConfig>
 	{
