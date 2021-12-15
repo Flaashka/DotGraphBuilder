@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Threading;
 using NUnit.Framework;
+// ReSharper disable InconsistentNaming
 
 namespace FluentApi.Graph
 {
@@ -24,17 +25,27 @@ namespace FluentApi.Graph
              var dot = DotGraphBuilder.UndirectedGraph("EmptyGraph").Build();
              AssertAreSame("graph EmptyGraph { }", dot);
          }
-//
-//         [Test]
-//         public void JustNodes()
-//         {
-//             var dot = DotGraphBuilder.DirectedGraph("NoEdges")
-//                 .AddNode("n1")
-//                 .AddNode("n2")
-//                 .Build();
-//             AssertAreSame("digraph NoEdges { n1; n2 }", dot);
-//         }
-//
+
+         [Test]
+         public void JustNodes()
+         {
+             var dot = DotGraphBuilder.DirectedGraph("NoEdges")
+                 .AddNode("n1")
+                 .AddNode("n2")
+                 .Build();
+             AssertAreSame("digraph NoEdges { n1; n2 }", dot);
+         }
+         
+         //
+         // [Test]
+         // public void JustOneNodeWithAttribute()
+         // {
+         //     var dot = DotGraphBuilder.DirectedGraph("NoEdges")
+         //         .AddNode("n1").With(c => c.Color("black"))
+         //         .Build();
+         //     AssertAreSame(@"digraph NoEdges { n1 [color=black] }", dot);
+         // }         
+         
 //         [Test]
 //         public void JustNodesWithAttributes()
 //         {

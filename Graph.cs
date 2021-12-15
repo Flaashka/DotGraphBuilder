@@ -37,12 +37,5 @@ namespace FluentApi.Graph
             edges.Add(result);
             return result;
         }
-
-        public string Build()
-        {
-            return this.ToDotFormat();
-        }
-        
-        
     }
 }
