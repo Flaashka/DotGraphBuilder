@@ -14,7 +14,6 @@ namespace FluentApi.Graph
         public void EmptyDirectedGraph()
         {
             var dot = DotGraphBuilder.DirectedGraph("EmptyGraph").Build();
-            
             AssertAreSame("digraph EmptyGraph { }", dot);
         }
 
@@ -24,23 +23,32 @@ namespace FluentApi.Graph
              var dot = DotGraphBuilder.UndirectedGraph("EmptyGraph").Build();
              AssertAreSame("graph EmptyGraph { }", dot);
          }
-//
-//         [Test]
-//         public void JustNodes()
-//         {
-//             var dot = DotGraphBuilder.DirectedGraph("NoEdges")
-//                 .AddNode("n1")
-//                 .AddNode("n2")
-//                 .Build();
-//             AssertAreSame("digraph NoEdges { n1; n2 }", dot);
-//         }
-//
+
+         [Test]
+         public void JustNodes()
+         {
+             var dot = DotGraphBuilder.DirectedGraph("NoEdges")
+                 .AddNode("n1")
+                 .AddNode("n2")
+                 .Build();
+             AssertAreSame("digraph NoEdges { n1; n2 }", dot);
+         }
+
+          [Test]
+          public void JustOneNodeWithAttribute()
+          {
+              var dot = DotGraphBuilder.DirectedGraph("NoEdges")
+                  .AddNode("n1").With(c => c.Color("black"))
+                  .Build();
+              AssertAreSame(@"digraph NoEdges { n1 [color=black] }", dot);
+          }
+         
 //         [Test]
 //         public void JustNodesWithAttributes()
 //         {
 //             var dot = DotGraphBuilder.DirectedGraph("NoEdges")
 //                 .AddNode("n1").With(c => c.Color("black").Shape(NodeShape.Box))
-//                 .AddNode("n2").With(c => c.Shape(NodeShape.Ellipse).FontSize(12).Label("node №2"))
+//                 //.AddNode("n2").With(c => c.Shape(NodeShape.Ellipse).FontSize(12).Label("node №2"))
 //                 .Build();
 //             AssertAreSame(@"digraph NoEdges { 
 // n1 [color=black; shape=box]; n2 [fontsize=12; label=""node №2""; shape=ellipse] }", dot);

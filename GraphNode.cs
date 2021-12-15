@@ -11,5 +11,11 @@ namespace FluentApi.Graph
         {
             Name = name;
         }
+
+        public void Color(string color)
+        {
+            if (!Attributes.TryGetValue(color, out _)) 
+                Attributes.Add("color", color);
+        }
     }
 }
