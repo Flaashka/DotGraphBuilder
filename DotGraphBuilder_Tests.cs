@@ -34,14 +34,23 @@ namespace FluentApi.Graph
              AssertAreSame("digraph NoEdges { n1; n2 }", dot);
          }
 
-          [Test]
-          public void JustOneNodeWithAttribute()
-          {
-              var dot = DotGraphBuilder.DirectedGraph("NoEdges")
-                  .AddNode("n1").With(c => c.Color("black"))
-                  .Build();
-              AssertAreSame(@"digraph NoEdges { n1 [color=black] }", dot);
-          }
+         [Test]
+         public void JustOneNodeWithAttribute()
+         {
+             var dot = DotGraphBuilder.DirectedGraph("NoEdges")
+                 .AddNode("n1").With(c => c.Color("black"))
+                 .Build();
+             AssertAreSame(@"digraph NoEdges { n1 [color=black] }", dot);
+         }
+         
+         [Test]
+         public void JustOneNodeWithTwoAttributes()
+         {
+             var dot = DotGraphBuilder.DirectedGraph("NoEdges")
+                 .AddNode("n1").With(c => c.Color("black").Shape(NodeShape.Box))
+                 .Build();
+             AssertAreSame(@"digraph NoEdges { n1 [color=black; shape=box] }", dot);
+         }         
          
 //         [Test]
 //         public void JustNodesWithAttributes()
@@ -145,4 +154,6 @@ namespace FluentApi.Graph
             return Regex.Replace(input, @"\s+", " ");
         }
     }
+
+
 }

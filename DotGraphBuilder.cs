@@ -25,4 +25,10 @@ namespace FluentApi.Graph
 			return new Graph(graphName, isDirected, isStrict);
 		}		
 	}
+	
+	public enum NodeShape
+	{
+		Box,
+		Ellipse
+	}
 }
