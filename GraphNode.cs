@@ -41,5 +41,21 @@ namespace FluentApi.Graph
                     throw new ArgumentOutOfRangeException(nameof(shape), shape, null);
             }
         }
+        
+        public GraphNode FontSize(int fontSize)
+        {
+            if (!Attributes.TryGetValue("fontsize", out _))
+                Attributes.Add("fontsize", fontSize.ToString());
+            
+            return this;
+        }
+
+        public GraphNode Label(string label)
+        {
+            if (!Attributes.TryGetValue("label", out _))
+                Attributes.Add("label", label);
+            
+            return this;
+        }
     }
 }
