@@ -68,64 +68,64 @@ n1 [color=black; shape=box]; n2 [fontsize=12; label=""node №2""; shape=ellipse
                      .Build();
              AssertAreSame("digraph G { a -> b; a -> x }", dot);
          }
-//
-//         [Test]
-//         public void JustEdgesWithAttributes()
-//         {
-//             var dot =
-//                 DotGraphBuilder
-//                     .UndirectedGraph("G")
-//                     .AddEdge("a", "b").With(a => a.Label("ab").FontSize(12).Color("black"))
-//                     .AddEdge("a", "x")
-//                     .AddEdge("x", "y").With(a => a.Weight(2).Color("red"))
-//                     .Build();
-//             AssertAreSame(@"graph G { 
-// a -- b [color=black; fontsize=12; label=ab]; a -- x; x -- y [color=red; weight=2] }", dot);
-//         }
-//
-//         [Test]
-//         public void NodesBeforeEdges()
-//         {
-//             var dot =
-//                 DotGraphBuilder
-//                     .UndirectedGraph("G")
-//                     .AddNode("b").With(a => a.Shape(NodeShape.Box))
-//                     .AddEdge("a", "b").With(e => e.Weight(3.14))
-//                     .Build();
-//             AssertAreSame("graph G { b [shape=box]; a -- b [weight=3.14] }", dot);
-//         }
-//
-//         [Test]
-//         public void EdgesBeforeNodes()
-//         {
-//             var dot =
-//                 DotGraphBuilder
-//                     .UndirectedGraph("G")
-//                     .AddEdge("a", "b").With(e => e.Weight(3.14))
-//                     .AddNode("b").With(a => a.Shape(NodeShape.Box))
-//                     .Build();
-//             AssertAreSame("graph G { b [shape=box]; a -- b [weight=3.14] }", dot);
-//         }
-//
-//         [Test]
-//         public void NamesAreEscaped()
-//         {
-//             // Используйте готовый код Graph, DotFormatWriter, чтобы пройти этот тест "бесплатно"
-//             var dot = DotGraphBuilder.DirectedGraph("my graph")
-//                 .AddNode("42 is the answer").With(a => a.Color("#00ff00"))
-//                 .AddNode("-3.14")
-//                 .AddNode("\"quotes\"")
-//                 .AddEdge("3", "abc").With(a => a.Label("long text"))
-//                 .AddEdge("3x", "a b c").With(a => a.Label("1.234"))
-//                 .Build();
-//             AssertAreSame(@"digraph ""my graph"" {
-// ""42 is the answer"" [color=""#00ff00""];
-// -3.14;
-// ""\""quotes\"""";
-// 3 -> abc [label=""long text""];
-// ""3x"" -> ""a b c"" [label=1.234]
-// }", dot);
-//         }
+
+        [Test]
+        public void JustEdgesWithAttributes()
+        {
+            var dot =
+                DotGraphBuilder
+                    .UndirectedGraph("G")
+                    .AddEdge("a", "b").With(a => a.Label("ab").FontSize(12).Color("black"))
+                    .AddEdge("a", "x")
+                    .AddEdge("x", "y").With(a => a.Weight(2).Color("red"))
+                    .Build();
+            AssertAreSame(@"graph G { 
+a -- b [color=black; fontsize=12; label=ab]; a -- x; x -- y [color=red; weight=2] }", dot);
+        }
+
+         [Test]
+         public void NodesBeforeEdges()
+         {
+             var dot =
+                 DotGraphBuilder
+                     .UndirectedGraph("G")
+                     .AddNode("b").With(a => a.Shape(NodeShape.Box))
+                     .AddEdge("a", "b").With(e => e.Weight(3.14))
+                     .Build();
+             AssertAreSame("graph G { b [shape=box]; a -- b [weight=3.14] }", dot);
+         }
+
+         [Test]
+         public void EdgesBeforeNodes()
+         {
+             var dot =
+                 DotGraphBuilder
+                     .UndirectedGraph("G")
+                     .AddEdge("a", "b").With(e => e.Weight(3.14))
+                     .AddNode("b").With(a => a.Shape(NodeShape.Box))
+                     .Build();
+             AssertAreSame("graph G { b [shape=box]; a -- b [weight=3.14] }", dot);
+         }
+
+        [Test]
+        public void NamesAreEscaped()
+        {
+            // Используйте готовый код Graph, DotFormatWriter, чтобы пройти этот тест "бесплатно"
+            var dot = DotGraphBuilder.DirectedGraph("my graph")
+                .AddNode("42 is the answer").With(a => a.Color("#00ff00"))
+                .AddNode("-3.14")
+                .AddNode("\"quotes\"")
+                .AddEdge("3", "abc").With(a => a.Label("long text"))
+                .AddEdge("3x", "a b c").With(a => a.Label("1.234"))
+                .Build();
+            AssertAreSame(@"digraph ""my graph"" {
+""42 is the answer"" [color=""#00ff00""];
+-3.14;
+""\""quotes\"""";
+3 -> abc [label=""long text""];
+""3x"" -> ""a b c"" [label=1.234]
+}", dot);
+        }
 //
 //         [Test]
 //         public void WithAcceptsEmptyAction()

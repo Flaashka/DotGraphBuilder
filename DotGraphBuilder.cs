@@ -17,6 +17,13 @@ namespace FluentApi.Graph
 		{
 			graph = new Graph(graphName, directed, false);
 		}
+
+		private readonly DotGraphBuilder parent;
+
+		public DotGraphBuilder(DotGraphBuilder parent)
+		{
+			this.parent = parent;
+		}
 		
 		public static DotGraphBuilder DirectedGraph(string graphName)
 		{
@@ -60,6 +67,11 @@ namespace FluentApi.Graph
 		{
 			return parentBuilder.AddNode(nodeName);
 		}
+		
+		public GraphEdgeBuilder AddEdge(string sourceNode, string destinationNode)
+		{
+			return parentBuilder.AddEdge(sourceNode, destinationNode);
+		}		
 
 		public DotGraphBuilder With(Action<NodeCommonAttributesConfig> applyAttributes)
 		{
